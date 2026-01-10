@@ -45,6 +45,39 @@ vector<int> primefactors(int n){
     return factors;
 }
 
+vector<int> getDivisors(int n){
+    vector<int> divisors;
+    for(int i = 1; i * i <= n; i++){
+        if(n % i == 0){
+            divisors.push_back(i);
+            if(i * i != n){
+                divisors.push_back(n / i);
+            }
+        }
+    }
+    sort(ALL(divisors));
+    return divisors;
+}
+
+vector<int> getPrimeFactors(int n){
+    vector<int> pf;
+    int num = n;
+    while (num % 2 == 0) {
+        pf.push_back(2);
+        num /= 2;
+    }
+    for (int cpf = 3; cpf * cpf <= num; cpf += 2) {
+        while (num % cpf == 0) {
+            pf.push_back(cpf);
+            num /= cpf;
+        }
+    }
+    if (num > 1) {
+        pf.push_back(num);
+    }
+    return pf;
+}
+
 namespace number_theory{
     template<class T> 
     T exp(T x, T n, T m = MOD){
@@ -59,36 +92,4 @@ namespace number_theory{
         return a * b / __gcd(a, b);
     }
 
-    vector<int> getDivisors(int n){
-        vector<int> divisors;
-        for(int i = 1; i * i <= n; i++){
-            if(n % i == 0){
-                divisors.push_back(i);
-                if(i * i != n){
-                    divisors.push_back(n / i);
-                }
-            }
-        }
-        sort(ALL(divisors));
-        return divisors;
-    }
-
-    vector<int> getPrimeFactors(int n){
-        vector<int> pf;
-        int num = n;
-        while (num % 2 == 0) {
-            pf.push_back(2);
-            num /= 2;
-        }
-        for (int cpf = 3; cpf * cpf <= num; cpf += 2) {
-            while (num % cpf == 0) {
-                pf.push_back(cpf);
-                num /= cpf;
-            }
-        }
-        if (num > 1) {
-            pf.push_back(num);
-        }
-        return pf;
-    }
 }

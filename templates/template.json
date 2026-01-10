@@ -4,8 +4,8 @@
         "body": [
             "#include <bits/stdc++.h>",
             "#define ll          long long",
-            "#define all(x)      (x).begin(), (x).end()",
-            "#define rall(x)     (x).rbegin(), (x).rend()",
+            "#define ALL(x)      (x).begin(), (x).end()",
+            "#define R_ALL(x)     (x).rbegin(), (x).rend()",
             "#define pb          push_back",
             "#define sz(x)       (int)(x).size()",
 			"using namespace std;",

@@ -1,0 +1,42 @@
+{
+    "CP Template": {
+        "prefix": "mcp",
+        "body": [
+            "#include <bits/stdc++.h>",
+            "#define ll          long long",
+            "#define all(x)      (x).begin(), (x).end()",
+            "#define rall(x)     (x).rbegin(), (x).rend()",
+            "#define pb          push_back",
+            "#define sz(x)       (int)(x).size()",
+			"using namespace std;",
+            "",
+            "const int MOD = 1e9 + 7;",
+            "",
+            "void solve() {",
+            "    $1",
+            "}",
+            "",
+            "int main() {",
+            "    ios::sync_with_stdio(false);",
+            "    cin.tie(nullptr);",
+            "    int t;",
+            "    cin >> t;",
+            "    while(t--) {",
+            "        solve();",
+            "    }",
+            "    return 0;",
+            "}",
+            "",
+            "/*",
+            " * -----------------------------------------------------------",
+            " * Logic Error? Check:",
+            " * 1. Integer Overflow (use ll)",
+            " * 2. Array Bounds",
+            " * 3. Edge Cases (n=1, n=0)",
+            " * 4. Resetting global variables",
+            " * -----------------------------------------------------------",
+            " */"
+        ],
+        "description": "Competitive Programming Template"
+    }
+}

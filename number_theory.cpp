@@ -6,54 +6,43 @@ using namespace std;
 
 const ll MOD = 1e9 + 7;
 
-
-namespace primeFactorization{
-    const int MAXN = 1000001;
-    int spf[MAXN];
-
-    void sieve() {
-        for(int i = 2; i < MAXN; i++) spf[i] = i;
-        for(int i = 2; i * i < MAXN; i++){
-            if(spf[i] == i){ 
-                for(int j = i * i; j < MAXN; j += i){
-                    if(spf[j] == j) spf[j] = i;
-                }     
+const int PRIME_MAXN = 1000001;
+int prime[PRIME_MAXN];
+void eratosthenes(){
+    for(int i = 0; i < PRIME_MAXN; i++) prime[i] = 1;
+    prime[0] = prime[1] = 0;
+    for(int i = 2; i * i < PRIME_MAXN; i++){
+        if(prime[i] == 1){
+            for(int j = i * i; j < PRIME_MAXN; j += i){
+                prime[j] = 0;
             }
         }
     }
-
-    vector<int> getFactorization(int n) {
-        vector<int> factors;
-        while(n > 1){
-            factors.push_back(spf[n]);
-            n /= spf[n];
-        }
-        return factors;
-    }
-
+}
+bool checkprime(int n){
+    if(n < 0 || n >= PRIME_MAXN) return false;
+    return prime[n];
 }
 
-namespace primeNumbers {
-    const int MAXN = 10000001;
-    int prime[MAXN];
-
-    void sieve() {
-        for(int i = 2; i < MAXN; i++) prime[i] = 1;
-        prime[0] = prime[1] = 0;
-
-        for(int i = 2; i * i < MAXN; i++){
-            if(prime[i] == 1){
-                for(int j = i * i; j < MAXN; j += i){
-                    prime[j] = 0;
-                }
+const int SPF_MAXN = 10000001;
+int spf[SPF_MAXN];
+void seivespf(){
+    for(int i = 0; i < SPF_MAXN; i++) spf[i] = i;
+    for(int i = 2; i * i < SPF_MAXN; i++){
+        if(spf[i] == i){
+            for(int j = i * i; j < SPF_MAXN; j += i){
+                spf[j] = i;
             }
         }
     }
-
-    bool checkPrime(int n) {
-        if (n < 0 || n >= MAXN) return false;
-        return prime[n];
+}
+vector<int> primefactors(int n){
+    vector<int> factors;
+    while(n > 1){
+        factors.push_back(spf[n]);
+        n = n / spf[n];
     }
+    return factors;
 }
 
 namespace number_theory{

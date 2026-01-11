@@ -57,7 +57,7 @@ vector<U> getPrimeFactors(U n){
             n /= i;
         }
     }
-    if(n > 1) pf.push_back(num);
+    if(n > 1) pf.push_back(n);
     return pf;
 }
 

@@ -27,15 +27,17 @@ bool checkprime(int n){
 const int SPF_MAXN = 10000001;
 int spf[SPF_MAXN];
 void seivespf(){
-    for(int i = 0; i < SPF_MAXN; i++) spf[i] = i;
+    iota(spf, spf + SPF_MAXN, 0);
     for(int i = 2; i * i < SPF_MAXN; i++){
         if(spf[i] == i){
             for(int j = i * i; j < SPF_MAXN; j += i){
-                spf[j] = i;
+                if(spf[j] == j) spf[j] = i;
             }
         }
     }
 }
+
+// O(log n) using SPF
 vector<int> primefactors(int n){
     vector<int> factors;
     while(n > 1){
@@ -43,6 +45,20 @@ vector<int> primefactors(int n){
         n = n / spf[n];
     }
     return factors;
+}
+
+// O(sqrt n) using Trial Division
+template<class U>
+vector<U> getPrimeFactors(U n){
+    vector<U> pf;
+    for (U i = 2; i * i <= n; i++){
+        while(n % i == 0) {
+            pf.push_back(i);
+            n /= i;
+        }
+    }
+    if(n > 1) pf.push_back(num);
+    return pf;
 }
 
 vector<int> getDivisors(int n){
@@ -55,27 +71,8 @@ vector<int> getDivisors(int n){
             }
         }
     }
-    sort(ALL(divisors));
+    sort(divisors.begin(), divisors.end());
     return divisors;
-}
-
-vector<int> getPrimeFactors(int n){
-    vector<int> pf;
-    int num = n;
-    while (num % 2 == 0) {
-        pf.push_back(2);
-        num /= 2;
-    }
-    for (int cpf = 3; cpf * cpf <= num; cpf += 2) {
-        while (num % cpf == 0) {
-            pf.push_back(cpf);
-            num /= cpf;
-        }
-    }
-    if (num > 1) {
-        pf.push_back(num);
-    }
-    return pf;
 }
 
 namespace number_theory{

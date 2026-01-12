@@ -76,6 +76,11 @@ vector<int> getDivisors(T n){
     return divisors;
 }
 
+template<class T>
+T lcm(T a, T b){
+    return (a / __gcd(a, b)) * b;
+}
+
 namespace number_theory{
     template<class T> 
     T exp(T x, T n, T m = MOD){
@@ -83,11 +88,6 @@ namespace number_theory{
         T p = exp(x, n / 2, m);
         T val = (p * p) % m;
         return (n % 2 == 0) ? val  : (val * x) % m;
-    }
-
-    template<class T>
-    T lcm(T a, T b){
-        return a * b / __gcd(a, b);
     }
 
 }
